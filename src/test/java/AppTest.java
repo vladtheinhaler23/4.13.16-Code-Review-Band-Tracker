@@ -17,9 +17,22 @@ public class AppTest extends FluentTest {
   @ClassRule
   public static ServerRule server = new ServerRule();
 
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
+
   @Test
   public void rootTest() {
     goTo("http://localhost:4567/");
     assertThat(pageSource()).contains("Band Tracker");
+  }
+
+  @Test
+  public void categoryIsCreatedTest() {
+    goTo("http://localhost:4567/");
+    fill("#name").with("Drake");
+    fill("#hometown").with("Toronto");
+    submit(".btn");
+    assertThat(pageSource()).contains("Drake");
+    assertThat(pageSource()).contains("Toronto");
   }
 }

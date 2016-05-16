@@ -25,7 +25,7 @@ public class Band {
   }
 
   public static List<Band> all() {
-    String sql = "SELECT id, name FROM bands";
+    String sql = "SELECT id, name, hometown FROM bands";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Band.class);
     }
