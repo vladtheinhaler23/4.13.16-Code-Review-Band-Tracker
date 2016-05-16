@@ -57,4 +57,13 @@ public class AppTest extends FluentTest {
     goTo(url);
     assertThat(pageSource()).contains("Drake");
   }
+
+  @Test
+  public void venueIndexDisplaysDescription() {
+    Venue testVenue = new Venue("Roseland", "Portland");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/");
+    goTo(url);
+    assertThat(pageSource()).contains("Roseland");
+  }
 }
