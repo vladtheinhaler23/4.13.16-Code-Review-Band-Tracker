@@ -66,4 +66,18 @@ public class AppTest extends FluentTest {
     goTo(url);
     assertThat(pageSource()).contains("Roseland");
   }
+
+  @Test
+  public void venueIsAddedToBand() {
+    Band testBand = new Band("Drake", "Toronto");
+    testBand.save();
+    Venue testVenue = new Venue("Roseland", "Portland");
+    testVenue.save();
+    String url = String.format("http://localhost:4567/band/%d", testBand.getId());
+    goTo(url);
+    fillSelect("#venue_id").withText("Roseland");
+    submit(".btn");
+    assertThat(pageSource()).contains("<li>");
+    assertThat(pageSource()).contains("Chicken Parm");
+  }
 }

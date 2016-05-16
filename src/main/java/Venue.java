@@ -17,17 +17,17 @@ public class Venue {
     return name;
   }
 
+  public String getCity() {
+    return city;
+  }
+
   public int getId() {
     return id;
   }
 
-  public String getRating() {
-    return city;
-  }
-
 
   public static List<Venue> all() {
-    String sql = "SELECT id, name, city FROM venues ORDER BY city ASC";
+    String sql = "SELECT id, name, city FROM venues";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Venue.class);
     }
