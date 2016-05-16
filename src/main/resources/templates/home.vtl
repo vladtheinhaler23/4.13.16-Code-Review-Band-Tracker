@@ -1,15 +1,33 @@
 <p>Band Tracker</p>
 
+<h1>Bands</h1>
 #foreach ($band in $bands)
   <p><a href="/bands/$band.getId()">$band.getName() / $band.getHometown()</a></p>
 #end
 
+<h1>Venues</h1>
+
+#foreach ($venue in $venues)
+  <p><a href="/venues/$venue.getId()">$venue.getName() / $venue.getCity()</a></p>
+#end
+
+
 <form action='/bands' method='post'>
   <div class="form-group">
-    <label for="name">Enter a New Band:</label>
-    <input type= "text" class="form-control" id="name" name="name">
+    <label for="bandName">Enter a New Band:</label>
+    <input type= "text" class="form-control" id="bandName" name="bandName">
     <label for="hometown">Hometown:</label>
     <input type= "text" class="form-control" id="hometown" name="hometown">
   </div>
-  <button class="btn" type="submit">Submit</button>
+  <button id="bandSubmit" class="btn" type="submit">Submit</button>
+</form>
+
+<form action='/venues' method='post'>
+  <div class="form-group">
+    <label for="venueName">Enter a New Venue:</label>
+    <input type= "text" class="form-control" id="venueName" name="venueName">
+    <label for="city">City:</label>
+    <input type= "text" class="form-control" id="city" name="city">
+  </div>
+  <button id="venueSumbit" class="btn" type="submit">Submit</button>
 </form>
