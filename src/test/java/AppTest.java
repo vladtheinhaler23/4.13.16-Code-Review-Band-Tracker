@@ -48,4 +48,13 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Roseland");
     assertThat(pageSource()).contains("Portland");
   }
+
+  @Test
+  public void bandIndexDisplaysName() {
+    Band testBand = new Band("Drake", "Toronto");
+    testBand.save();
+    String url = String.format("http://localhost:4567/");
+    goTo(url);
+    assertThat(pageSource()).contains("Drake");
+  }
 }
