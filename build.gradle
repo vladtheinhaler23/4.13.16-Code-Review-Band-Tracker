@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-archivesBaseName = "rename"
+archivesBaseName = "band_tracker"
 version = '1.0'
 mainClassName = "App"
 
