@@ -1,7 +1,15 @@
 <h1>$band.getName()</h1>
+<h3>Hometown: $band.getHometown()</h3>
 <h3>Venues Played:</h3>
-#foreach ($venue in $venues)
-  <p><a href="/venues/$venue.getId()">$venue.getName() / $venue.getCity()</a></p>
+#if($band.getVenues())
+  <p>Here are the venues for this band:</p>
+  <ul>
+    #foreach($venue in $band.getVenues())
+      <li>$venue.getName()/$venue.getCity()</li>
+    #end
+  </ul>
+#else
+  <p>No venues.</p>
 #end
 
 
@@ -15,3 +23,11 @@
   </select>
   <button type="submit" class="btn btn-info">Add band to this venue</button>
 </form>
+
+<p><a href="/bands/$band.getId()/edit">Edit Name</a></p>
+
+<form action='/bands/$band.getId()/delete' method='post'>
+  <button type="submit" class="btn-danger" id="delete">Delete Band</button>
+</form>
+
+<a href="/">Home</a>
