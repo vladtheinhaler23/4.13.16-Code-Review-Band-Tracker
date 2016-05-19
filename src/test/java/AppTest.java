@@ -36,7 +36,6 @@ public class AppTest extends FluentTest {
     fill("#hometown").with("Toronto");
     submit("#bandSubmit");
     assertThat(pageSource()).contains("Drake");
-    assertThat(pageSource()).contains("Toronto");
   }
 
   @Test
@@ -73,11 +72,12 @@ public class AppTest extends FluentTest {
     testBand.save();
     Venue testVenue = new Venue("Roseland", "Portland");
     testVenue.save();
-    String url = String.format("http://localhost:4567/band/%d", testBand.getId());
+    String url = String.format("http://localhost:4567/bands/%d", testBand.getId());
     goTo(url);
     fillSelect("#venue_id").withText("Roseland");
     submit(".btn");
     assertThat(pageSource()).contains("<li>");
-    assertThat(pageSource()).contains("Chicken Parm");
-  }
+    assertThat(pageSource()).contains("Roseland");
+    assertThat(pageSource()).contains("Portland");
+    }
 }
